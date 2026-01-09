@@ -201,8 +201,8 @@ void ParkingLot::xuatxe(const Date& dateout)
     for (int i = 0; i < n; i++)
     {
         if (ve[i]->getid() == id &&
-            ve[i]->gettimeout().getgio() == 0 &&
-            ve[i]->gettimeout().getphut() == 0)
+            ve[i]->gettimeout().getgio() == -1 &&
+            ve[i]->gettimeout().getphut() == -1)
         {
             found = true;
             break;
@@ -233,8 +233,8 @@ void ParkingLot::xuatxe(const Date& dateout)
     ofstream fout("in.txt");
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() == 0 &&
-            ve[i]->gettimeout().getphut() == 0)
+        if (ve[i]->gettimeout().getgio() == -1 &&
+            ve[i]->gettimeout().getphut() == -1)
         {
             fout << ve[i]->getid() << " "
                 << ve[i]->getxe()->gettype() << " "
@@ -252,8 +252,8 @@ void ParkingLot::xuatxe(const Date& dateout)
     ofstream foutOut("out.txt");
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() != 0 ||
-            ve[i]->gettimeout().getphut() != 0)
+        if (ve[i]->gettimeout().getgio() != -1 ||
+            ve[i]->gettimeout().getphut() != -1)
         {
             foutOut << ve[i]->getid() << " "
                 << ve[i]->getxe()->gettype() << " "
@@ -281,8 +281,8 @@ void ParkingLot::danhsachxe()
 
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() == 0 &&
-            ve[i]->gettimeout().getphut() == 0)
+        if (ve[i]->gettimeout().getgio() == -1 &&
+            ve[i]->gettimeout().getphut() == -1)
         {
             cout << "ID: " << setw(4) << setfill('0') << ve[i]->getid()
                 << " | Loai: " << setw(6) << setfill(' ') << ve[i]->getxe()->gettype()
@@ -369,8 +369,8 @@ void ParkingLot::hienthixe()
     int dem = 0;
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() != 0 ||
-            ve[i]->gettimeout().getphut() != 0)
+        if (ve[i]->gettimeout().getgio() != -1 ||
+            ve[i]->gettimeout().getphut() != -1)
         {
             cout << "ID: " << setw(4) << setfill('0') << ve[i]->getid()
                 << " | Loai: " << setw(6) << setfill(' ') << ve[i]->getxe()->gettype()

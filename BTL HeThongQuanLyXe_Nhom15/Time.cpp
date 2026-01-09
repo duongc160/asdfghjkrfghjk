@@ -1,6 +1,6 @@
 #include "Time.h"
 
-Time::Time() : gio(0), phut(0) {}
+Time::Time() : gio(-1), phut(-1) {}
 
 int Time::getgio() const { return gio; }
 int Time::getphut() const { return phut; }
