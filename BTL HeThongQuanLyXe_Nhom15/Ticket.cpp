@@ -60,8 +60,8 @@ void Ticket::xuatve(const Time& timeout, const Date& dateout)
         << "Loai xe:             " << xe->gettype() << endl
         << "Bien so:             " << xe->getplate() << endl
         << "---------------------------------------" << endl
-        << "Thoi gian ra:        " << timein << " " << datein << endl
-        << "Thoi gian vao:       " << timeout << " " << dateout << endl
+        << "Thoi gian vao:        " << timein << " " << datein << endl
+        << "Thoi gian ra:       " << timeout << " " << dateout << endl
         << "---------------------------------------" << endl
         << "Tong so gio gui:     " << tongGio << " gio" << endl
         << "Tong tien:           " << fee << " VND" << endl
