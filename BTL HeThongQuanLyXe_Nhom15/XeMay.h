@@ -6,5 +6,7 @@ class XeMay : public Xe
     double giave;
 public:
     XeMay();
-    long long getgiave() const override;
+    void nhap() override;
+    void xuat() override;
+    double getgiave() const override;
 };

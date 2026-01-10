@@ -6,5 +6,7 @@ class Oto : public Xe
     double giave;
 public:
     Oto();
-    long long getgiave() const override;
+    void nhap() override;
+    void xuat() override;
+    double getgiave() const override;
 };

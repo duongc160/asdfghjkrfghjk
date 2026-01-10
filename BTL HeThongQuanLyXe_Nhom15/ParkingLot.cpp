@@ -54,7 +54,7 @@ ParkingLot::ParkingLot()
         n++;
     }
 
-    // ----- ??c danh sách xe ?ã xu?t -----
+    // ----- ??c danh sách xe ?Exu?t -----
     while (finOut >> id >> type >> plate >> timein >> datein >> timeout >> dateout)
     {
         ve[n] = new Ticket(id);
@@ -80,7 +80,6 @@ ParkingLot::ParkingLot()
 void ParkingLot::themxe(const Date& datein)
 {
     Xe* xe = nullptr;
-    string plate;
     Time timein;
     char ch;
     if (soxemay >= MAXXEMAY && soxeoto >= MAXOTO)
@@ -155,21 +154,22 @@ void ParkingLot::themxe(const Date& datein)
                 return;
             }
     }
-    cout << "Nhap bien so: ";
-    cin >> plate;
+
+    xe->nhap();
+
     cout << "Nhap thoi gian vao (gio/phut): ";
     cin >> timein;
     system("cls");
     cout << "Them xe thanh cong!\n";
     system("pause");
-    xe->setplate(plate);
+
     ve[n] = new Ticket(n + 1);
     ve[n]->taove(timein, datein, *xe);
 
     delete xe;
     n++;
 
-    // ----- Ghi l?i file in.txt -----
+    // ----- Ghi lai file in.txt -----
     ofstream fout("in.txt");
     for (int i = 0; i < n; i++)
     {
@@ -201,8 +201,8 @@ void ParkingLot::xuatxe(const Date& dateout)
     for (int i = 0; i < n; i++)
     {
         if (ve[i]->getid() == id &&
-            ve[i]->gettimeout().getgio() == -1 &&
-            ve[i]->gettimeout().getphut() == -1)
+            ve[i]->gettimeout().getgio() == 0 &&
+            ve[i]->gettimeout().getphut() == 0)
         {
             found = true;
             break;
@@ -220,7 +220,12 @@ void ParkingLot::xuatxe(const Date& dateout)
     {
         if (ve[i]->getid() == id)
         {
+            ve[i]->getxe()->xuat();
+            cout << endl;
+            system("pause");
+
             ve[i]->xuatve(timeout, dateout);
+
             if (ve[i]->getxe()->gettype() == "XeMay")
                 soxemay--;
             else if (ve[i]->getxe()->gettype() == "Oto")
@@ -233,8 +238,8 @@ void ParkingLot::xuatxe(const Date& dateout)
     ofstream fout("in.txt");
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() == -1 &&
-            ve[i]->gettimeout().getphut() == -1)
+        if (ve[i]->gettimeout().getgio() == 0 &&
+            ve[i]->gettimeout().getphut() == 0)
         {
             fout << ve[i]->getid() << " "
                 << ve[i]->getxe()->gettype() << " "
@@ -252,8 +257,8 @@ void ParkingLot::xuatxe(const Date& dateout)
     ofstream foutOut("out.txt");
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() != -1 ||
-            ve[i]->gettimeout().getphut() != -1)
+        if (ve[i]->gettimeout().getgio() != 0 ||
+            ve[i]->gettimeout().getphut() != 0)
         {
             foutOut << ve[i]->getid() << " "
                 << ve[i]->getxe()->gettype() << " "
@@ -281,8 +286,8 @@ void ParkingLot::danhsachxe()
 
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() == -1 &&
-            ve[i]->gettimeout().getphut() == -1)
+        if (ve[i]->gettimeout().getgio() == 0 &&
+            ve[i]->gettimeout().getphut() == 0)
         {
             cout << "ID: " << setw(4) << setfill('0') << ve[i]->getid()
                 << " | Loai: " << setw(6) << setfill(' ') << ve[i]->getxe()->gettype()
@@ -308,7 +313,7 @@ void ParkingLot::timkiem()
 {
     int index;
     bool found = false;
-    cout << "Nhap vao id ve: " << endl;
+    cout << "Nhap vao id ve: ";
     cin >> index;
     system("cls");
     for (int i = 0; i < n; i++)
@@ -369,8 +374,8 @@ void ParkingLot::hienthixe()
     int dem = 0;
     for (int i = 0; i < n; i++)
     {
-        if (ve[i]->gettimeout().getgio() != -1 ||
-            ve[i]->gettimeout().getphut() != -1)
+        if (ve[i]->gettimeout().getgio() != 0 ||
+            ve[i]->gettimeout().getphut() != 0)
         {
             cout << "ID: " << setw(4) << setfill('0') << ve[i]->getid()
                 << " | Loai: " << setw(6) << setfill(' ') << ve[i]->getxe()->gettype()
